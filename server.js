@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static('public'));
-
+app.set('view engine', 'pug')
+app.set('views', './views')
 
 app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
@@ -17,7 +18,8 @@ app.get('/', function (req, res) {
 app.post('/process_post', urlencodedParser, function (req, res) {
 	var resultQuery = client.search(client.query().q(req.body.issueSearchQuery),function (err, result) {// Search documents using strQuery 
 	console.log('Inside Search ++++:', result.response);
-    res.send(JSON.stringify(result.response));
+    //res.send(JSON.stringify(result.response));
+	res.render('result', {  title: 'Trac'})
    });
    
 });
@@ -35,7 +37,7 @@ var SolrNode = require('solr-node');
 var client = new SolrNode({
     host: '127.0.0.1',
     port: '8983',
-    core: 'films_shard1_replica_n2',
+    core: 'accurev',
     protocol: 'http'
 });
  
@@ -43,7 +45,7 @@ var client = new SolrNode({
 var client = new SolrNode({
     host: '127.0.0.1',
     port: '8983',
-    core: 'films_shard1_replica_n2',
+    core: 'accurev',
     protocol: 'http',
     debugLevel: 'ERROR' // log4js debug level paramter 
 });
