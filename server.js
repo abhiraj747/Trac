@@ -17,9 +17,12 @@ app.get('/', function (req, res) {
 
 app.post('/process_post', urlencodedParser, function (req, res) {
 	var resultQuery = client.search(client.query().q(req.body.issueSearchQuery),function (err, result) {// Search documents using strQuery 
-	console.log('Inside Search ++++:', result.response);
+	
+	var responseObj = JSON.parse(JSON.stringify(result.response));
+	console.log('JSON pARSE ++++:', responseObj);
+	var docs = responseObj.docs;
     //res.send(JSON.stringify(result.response));
-	res.render('result', {  title: 'Trac'})
+	res.render('result', {  docs: docs })
    });
    
 });

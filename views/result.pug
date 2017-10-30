@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
 	head
-		title= Results..
+		title Results..
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
@@ -58,3 +58,19 @@ html(lang="en")
 					th Age
 					th Releases
 					th Date Submitted
+				tr
+				each doc in docs
+					td= doc.issueNum
+					td= doc.dateUpdatedSec
+					td= doc.state
+					td= doc.productType
+					td= doc.type
+					td= doc.severity
+					td= doc.priority
+					td= doc.assignedToUserName
+					td= doc.subsystem
+					td= doc.shortDescription
+					td= doc.age
+					td= doc.releases
+					td= doc.dateSubmittedSec
+					tr
