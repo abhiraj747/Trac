@@ -23,14 +23,19 @@ app.post('/process_post', urlencodedParser, function (req, res) {
 		 searchString="*:*";
 	 }
 	
-	var resultQuery = client.search(client.query().q(searchString),function (err, result) {// Search documents using strQuery 
-	console.log('JSON pARSE ++++:', JSON.stringify(result.response));
-	console.log('==================================================');
+	var resultQuery = client.search(client.query().q(searchString),function (err, result) {
+	if(err)
+	{
+		res.render('error', {  err : err })
+	}
+	else{
+	// Search documents using strQuery 
 	var responseObj = JSON.parse(JSON.stringify(result.response));
 	console.log('JSON pARSE ++++:', responseObj);
 	var docs = responseObj.docs;
     //res.send(JSON.stringify(result.response));
 	res.render('result', {  docs: docs , moment: moment})
+	}
    });
    
 });
