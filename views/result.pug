@@ -61,7 +61,7 @@ html(lang="en")
 				tr
 				each doc in docs
 					td= doc.issueNum
-					td= doc.dateUpdatedSec
+					td= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
 					td= doc.state
 					td= doc.productType
 					td= doc.type
@@ -72,5 +72,5 @@ html(lang="en")
 					td= doc.shortDescription
 					td= doc.age
 					td= doc.releases
-					td= doc.dateSubmittedSec
+					td= moment(doc.dateSubmittedSec*1000).format("DD MMM YYYY hh:mm a")
 					tr

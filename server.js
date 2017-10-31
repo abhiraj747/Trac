@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+var moment = require('moment');
 
 var bodyParser = require('body-parser');
 
@@ -16,13 +17,20 @@ app.get('/', function (req, res) {
 })
 
 app.post('/process_post', urlencodedParser, function (req, res) {
-	var resultQuery = client.search(client.query().q(req.body.issueSearchQuery),function (err, result) {// Search documents using strQuery 
+	var searchString = req.body.issueSearchQuery;
+	console.log('searchString  :', searchString);
+	 if(searchString == '' || searchString === undefined){
+		 searchString="*:*";
+	 }
 	
+	var resultQuery = client.search(client.query().q(searchString),function (err, result) {// Search documents using strQuery 
+	console.log('JSON pARSE ++++:', JSON.stringify(result.response));
+	console.log('==================================================');
 	var responseObj = JSON.parse(JSON.stringify(result.response));
 	console.log('JSON pARSE ++++:', responseObj);
 	var docs = responseObj.docs;
     //res.send(JSON.stringify(result.response));
-	res.render('result', {  docs: docs })
+	res.render('result', {  docs: docs , moment: moment})
    });
    
 });
