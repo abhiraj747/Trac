@@ -30,11 +30,17 @@ app.post('/process_post', urlencodedParser, function (req, res) {
 	}
 	else{
 	// Search documents using strQuery 
-	var responseObj = JSON.parse(JSON.stringify(result.response));
-	console.log('JSON pARSE ++++:', responseObj);
-	var docs = responseObj.docs;
+	
+	
+	var docArray = result.response;
+	//console.log('docs ' , docs);
     //res.send(JSON.stringify(result.response));
-	res.render('result', {  docs: docs , moment: moment})
+	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
+	for (var x in docArray.docs)
+	{
+		console.log('inside for loop' , docArray.docs[x].issue_assign_hist.userName);
+	}
+	res.render('result', {  docs: docArray.docs , moment: moment});
 	}
    });
    

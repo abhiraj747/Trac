@@ -1,0 +1,181 @@
+[
+   {
+      "@issueNum": "43519",
+      "@dateUpdatedSec": "1508824631",
+      "state": "Verify",
+      "productType": "Gravity",
+      "type": "Defect",
+      "severity": "2",
+      "priority": "2",
+      "assignedToIdNumber": "366",
+      "assignedToUserName": "Padmanabhan, Abhishekh (abhishekh.padmanabhan@toshibagcs.com)",
+      "submittedByIdNumber": "267",
+      "dateSubmittedSec": "1505161662",
+      "datePromotedSec": "1506955653",
+      "dateReadyToVerifySec": "1507312750",
+      "dateRejectedSec": [],
+      "dateClosedSec": [],
+      "subsystem": "Base_ChangeTeam",
+      "comp": "ChangeTeam",
+      "shortDescription": "[PST-1595] Production - Error Code - java.lang.ArrayIndexOut OfBounds Exception; ErrorDescription - Error_description_not_available",
+      "symptons": "Program Defect",
+      "Answer": "Program Defect",
+      "phsfnd": "Post GA/Production",
+      "phaseinject": "Unit Test",
+      "phase_escaped": "FVT",
+      "cust": "kohls",
+      "age": "41",
+      "level": "2.2.1- R7 Base",
+      "owningteam": "Change Team",
+      "sevjust": "Prod PST Issue",
+      "codechanges": "Yes",
+      "releases": "2.2.1",
+      "fixlvl": "2.2.1-283 | 2017-10-06_13-35-58",
+      "trgtstrm": "2018R10",
+      "certbyUserName": "Bennett, David (bennettd@toshibagcs.com)",
+      "isClone": "No",
+      "ExtDefectNum": "PST-1595",
+      "defectvalUserName": "Padmanabhan, Abhishekh (abhishekh.padmanabhan@toshibagcs.com)",
+      "defectresUserName": "Chacko, Raison (raison.chacko@toshibagcs.com)",
+      "time_chrg_hist": {
+         "l2time": [
+            {
+               "@userIdNumber": "267",
+               "@userId": "econsul",
+               "@timeHr": "2.2"
+            },
+            {
+               "@userIdNumber": "277",
+               "@userId": "klokanat",
+               "@timeHr": "0.2"
+            }
+         ],
+         "l3time": [
+            {
+               "@userIdNumber": "260",
+               "@userId": "rchacko3",
+               "@timeHr": "22.1"
+            },
+            {
+               "@userIdNumber": "366",
+               "@userId": "abhishekhp",
+               "@timeHr": "4"
+            }
+         ],
+         "certtime": [
+            {
+               "@userIdNumber": "264",
+               "@userId": "bennettd",
+               "@timeHr": "0.1"
+            },
+            {
+               "@userIdNumber": "366",
+               "@userId": "abhishekhp",
+               "@timeHr": "0.2"
+            }
+         ]
+      },
+      "issue_assign_hist": [
+         {
+            "@userIdNumber": "260",
+            "@userId": "rchacko3",
+            "@userName": "Chacko, Raison (raison.chacko@toshibagcs.com)",
+            "@noOfAssignments": "3",
+            "@timeHr": "34.1"
+         },
+         {
+            "@userIdNumber": "366",
+            "@userId": "abhishekhp",
+            "@userName": "Padmanabhan, Abhishekh (abhishekh.padmanabhan@toshibagcs.com)",
+            "@noOfAssignments": "5",
+            "@timeHr": "517"
+         },
+         {
+            "@userIdNumber": "267",
+            "@userId": "econsul",
+            "@userName": "Consul, Eena (Eena.Consul@toshibagcs.com)",
+            "@noOfAssignments": "3",
+            "@timeHr": "23"
+         },
+         {
+            "@userIdNumber": "264",
+            "@userId": "bennettd",
+            "@userName": "Bennett, David (bennettd@toshibagcs.com)",
+            "@noOfAssignments": "2",
+            "@timeHr": "240"
+         }
+      ]
+   },
+   {
+      "@issueNum": "43529",
+      "@dateUpdatedSec": "1508824731",
+      "state": "Promoted",
+      "productType": "Gravity",
+      "type": "Defect",
+      "severity": "2",
+      "priority": "3",
+      "assignedToIdNumber": "366",
+      "assignedToUserName": "Padmanabhan, Abhishekh (abhishekh.padmanabhan@toshibagcs.com)",
+      "submittedByIdNumber": "267",
+      "dateSubmittedSec": "1505696962",
+      "datePromotedSec": "1506951953",
+      "dateReadyToVerifySec": [],
+      "dateRejectedSec": [],
+      "dateClosedSec": [],
+      "subsystem": "Base_ChangeTeam",
+      "comp": "ChangeTeam",
+      "shortDescription": "[PST-1695] Production - Error Code - NullPointer Exception; ErrorDescription - Error_description_not_available",
+      "symptons": "Program Defect",
+      "Answer": "Program Defect",
+      "phsfnd": "Post GA/Production",
+      "phaseinject": "Unit Test",
+      "phase_escaped": "FVT",
+      "cust": "kohls",
+      "age": "36",
+      "level": "2.2.1- R7 Base",
+      "owningteam": "Change Team",
+      "sevjust": "Prod PST Issue",
+      "codechanges": "Yes",
+      "releases": "2.2.1",
+      "fixlvl": [],
+      "trgtstrm": "2018R10",
+      "certbyUserName": "Bennett, David (bennettd@toshibagcs.com)",
+      "isClone": "No",
+      "ExtDefectNum": "PST-1695",
+      "defectvalUserName": "Padmanabhan, Abhishekh (abhishekh.padmanabhan@toshibagcs.com)",
+      "defectresUserName": "Chacko, Raison (raison.chacko@toshibagcs.com)",
+      "time_chrg_hist": {
+         "l2time": [],
+         "l3time": {
+            "user": {
+               "@userIdNumber": "260",
+               "@userId": "rchacko3",
+               "@timeHr": "12.4"
+            }
+         },
+         "certtime": {
+            "user": {
+               "@userIdNumber": "264",
+               "@userId": "bennettd",
+               "@timeHr": "0.2"
+            }
+         }
+      },
+      "issue_assign_hist": [
+         {
+            "@userIdNumber": "260",
+            "@userId": "rchacko3",
+            "@userName": "Chacko, Raison (raison.chacko@toshibagcs.com)",
+            "@noOfAssignments": "2",
+            "@timeHr": "14.1"
+         },
+         {
+            "@userIdNumber": "264",
+            "@userId": "bennettd",
+            "@userName": "Bennett, David (bennettd@toshibagcs.com)",
+            "@noOfAssignments": "3",
+            "@timeHr": "120.2"
+         }
+      ]
+   }
+]

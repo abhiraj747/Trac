@@ -24,20 +24,11 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>Trac.</h1> 
+  <h1>Trac</h1> 
   <p>Defect Tracking and Analysis tool</p> 
-  <!--<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Project
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Gravity</a></li>
-    <li><a href="#">AccuHelp</a></li>
-    <li><a href="#">3</a></li>
-  </ul>
-</div>-->
-<form class="form-inline" action = "http://127.0.0.1:8080/process_post" method = "POST" >
+<form class="form-inline" action = "http://127.0.0.1:8080/process_post" method = "POST">
     <div class="input-group">
-       <input type="text" class="search-query form-control" id="issueNum" name="issueSearchQuery" size="50">
+       <input type="text" class="form-control" id="issueNum" name="issueSearchQuery" size="50" placeholder="Search for issue details">
       <div class="input-group-btn">
         <input type="submit" class="btn btn-info">Search</input>
       </div>
