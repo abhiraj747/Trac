@@ -3,8 +3,10 @@ var app = express();
 
 var moment = require('moment');
 
-var bodyParser = require('body-parser');
+var json2csv = require('json2csv');
 
+var bodyParser = require('body-parser');
+var fs = require('fs');
 // Create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -15,6 +17,37 @@ app.set('views', './views')
 app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 })
+
+app.post('/download', urlencodedParser, function (req, res) {
+	var searchString = req.body.issueSearchQuery;
+	console.log('searchString  :', searchString);
+	 if(searchString == '' || searchString === undefined){
+		 searchString="*:*";
+	 }
+	
+	var resultQuery = client.search(client.query().q(searchString),function (err, result) {
+	if(err)
+	{
+		res.render('error', {  err : err })
+	}
+	else{
+	// Search documents using strQuery 
+	
+	
+	var docArray = result.response;
+	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
+    var fields = ['issueNum', 'dateUpdatedSec', 'state', 'productType', 'type', 'severity','priority','assignedToUserName','dateSubmittedSec','age','releases','time_chrg_hist.userIdNumber','time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr']
+	
+	var csv = json2csv({ data: docArray.docs, fields: fields, unwindPath: ['time_chrg_hist.userIdNumber', 'time_chrg_hist.userId' , 'time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr'] });
+	fs.writeFile('file.csv', csv, function(err) {
+  if (err) throw err;
+  console.log('file saved');
+});
+	
+	}
+   });
+   
+});
 
 app.post('/process_post', urlencodedParser, function (req, res) {
 	var searchString = req.body.issueSearchQuery;
@@ -36,10 +69,10 @@ app.post('/process_post', urlencodedParser, function (req, res) {
 	//console.log('docs ' , docs);
     //res.send(JSON.stringify(result.response));
 	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
-	for (var x in docArray.docs)
+	/*for (var x in docArray.docs)
 	{
-		console.log('inside for loop' , docArray.docs[x].issue_assign_hist.userName);
-	}
+		console.log('inside for loop' , docArray.docs[x]["issue_assign_hist.userName"]);
+	}*/
 	res.render('result', {  docs: docArray.docs , moment: moment});
 	}
    });
@@ -53,13 +86,14 @@ var server = app.listen(8080, function () {
 
 });
 
+
 var SolrNode = require('solr-node');
  
 // Create client 
 var client = new SolrNode({
     host: '127.0.0.1',
     port: '8983',
-    core: 'accurev',
+    core: 'Accurev',
     protocol: 'http'
 });
  
@@ -67,12 +101,14 @@ var client = new SolrNode({
 var client = new SolrNode({
     host: '127.0.0.1',
     port: '8983',
-    core: 'accurev',
+    core: 'Accurev',
     protocol: 'http',
     debugLevel: 'ERROR' // log4js debug level paramter 
 });
 
+
  
+
 
 
  
