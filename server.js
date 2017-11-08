@@ -20,12 +20,13 @@ app.get('/', function (req, res) {
 
 app.post('/download', urlencodedParser, function (req, res) {
 	var searchString = req.body.issueSearchQuery;
-	console.log('searchString  :', searchString);
+	
 	 if(searchString == '' || searchString === undefined){
 		 searchString="*:*";
+		 //searchString=searchString+'&rows=2147483647';
 	 }
-	
-	var resultQuery = client.search(client.query().q(searchString),function (err, result) {
+	console.log('searchString  :', searchString);
+	var resultQuery = client.search(client.query().q(searchString).rows(2147483647),function (err, result) {
 	if(err)
 	{
 		res.render('error', {  err : err })
@@ -35,12 +36,12 @@ app.post('/download', urlencodedParser, function (req, res) {
 	
 	
 	var docArray = result.response;
-	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
-    var fields = ['issueNum', 'dateUpdatedSec', 'state', 'productType', 'type', 'severity','priority','assignedToUserName','dateSubmittedSec','age','releases','time_chrg_hist.userIdNumber','time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr']
-	
-	var csv = json2csv({ data: docArray.docs, fields: fields });
+	//console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
+    var fields = ['issueNum', 'dateUpdatedSec', 'state', 'substate','productType', 'type', 'severity','priority','assignedToIdNumber','assignedToUserName','submittedByIdNumber','dateSubmittedSec','datePromotedSec','dateReadyToVerifySec','dateRejectedSec','dateClosedSec','subsystem','comp','shortDescription','symptons','Answer','phsfnd','phaseinject','phase_escaped','cust','age','level','owningteam','sevjust','codechanges','releases','fixlvl','trgtstrm','certbyUserName','isClone','ExtDefectNum','defectvalUserName','defectresUserName','submittedByDisp','time_chrg_hist.userIdNumber','time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userId','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr']
+	//, unwindPath:['time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType']
+	var csv = json2csv({ data: docArray.docs, fields: fields , unwindPath:['time_chrg_hist.userId','time_chrg_hist.timeHr'] });
 	res.attachment('accurev_data.csv');
-res.status(200).send(csv);
+	res.status(200).send(csv);
 	
 	}
    });
@@ -53,8 +54,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
 	 if(searchString == '' || searchString === undefined){
 		 searchString="*:*";
 	 }
-	
-	var resultQuery = client.search(client.query().q(searchString),function (err, result) {
+	var resultQuery = client.search(client.query().q(searchString).rows(2147483647),function (err, result) {
 	if(err)
 	{
 		res.render('error', {  err : err })
