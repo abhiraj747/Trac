@@ -64,11 +64,11 @@ html(lang='en')
            td(rowspan='2')= doc.shortDescription
            td(rowspan='2')= doc.age
            td(rowspan='2')= doc.releases
-           td User Name
+           td(style='font-weight:bold') User Name
            each hist in doc['issue_assign_hist.userName']
             td=hist
            tr
-             td Issue Assignment History
+             td(style='font-weight:bold') Issue Assignment History
              each timehr in doc['issue_assign_hist.timeHr']
               td=timehr
            tr
