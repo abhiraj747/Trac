@@ -39,7 +39,7 @@ html(lang='en')
       h1 Trac
       p Defect Tracking and Analysis tool
     .scrollbar.scrollbar-primary
-      table.table.table-striped(align='center')
+      table.table.table-bordered(align='center')
         tr
           th Issue #
           th Date Updated
@@ -51,24 +51,35 @@ html(lang='en')
           th Short Description
           th Age
           th Releases
-          th(colspan='4') User Assinment and Charge Time info
-        tr(rowspan='2')
+          th(colspan='8') User Assinment and Charge Time info
+        tr(rowspan='4')
           each doc in docs
-           td(rowspan='2')= doc.issueNum
-           td(rowspan='2')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
-           td(rowspan='2')= doc.state
-           td(rowspan='2')= doc.severity
-           td(rowspan='2')= doc.priority
-           td(rowspan='2')= doc.assignedToUserName
-           td(rowspan='2')= doc.subsystem
-           td(rowspan='2')= doc.shortDescription
-           td(rowspan='2')= doc.age
-           td(rowspan='2')= doc.releases
+           td(rowspan='4')= doc.issueNum
+           td(rowspan='4')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
+           td(rowspan='4')= doc.state
+           td(rowspan='4')= doc.severity
+           td(rowspan='4')= doc.priority
+           td(rowspan='4')= doc.assignedToUserName
+           td(rowspan='4')= doc.subsystem
+           td(rowspan='4')= doc.shortDescription
+           td(rowspan='4')= doc.age
+           td(rowspan='4')= doc.releases
            td(style='font-weight:bold') User Name
+           if doc['issue_assign_hist.userName'] 
            each hist in doc['issue_assign_hist.userName']
             td=hist
            tr
              td(style='font-weight:bold') Issue Assignment History
              each timehr in doc['issue_assign_hist.timeHr']
               td=timehr
+           tr
+             td(style='font-weight:bold') User Id
+             if doc['time_chrg_hist.userId']
+              each hist in doc['time_chrg_hist.userId']
+               td=hist
+             tr
+               td(style='font-weight:bold') L3 Charge time
+               if doc['time_chrg_hist.timeHr']
+                each timehr in doc['time_chrg_hist.timeHr']
+                 td=timehr
            tr
