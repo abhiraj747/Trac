@@ -1,0 +1,47 @@
+<field name="Answer" type="string"/>
+  <field name="ExtDefectNum" type="string"/>
+  <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
+  <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
+  <field name="_version_" type="plong" indexed="false" stored="false"/>
+  <field name="age" type="plong"/>
+  <field name="assignedToIdNumber" type="plong"/>
+  <field name="assignedToUserName" type="string"/>
+  <field name="certbyUserName" type="string"/>
+  <field name="codechanges" type="text_general"/>
+  <field name="comp" type="string"/>
+  <field name="cust" type="string"/>
+  <field name="dateClosedSec" type="plong"/>
+  <field name="datePromotedSec" type="plong"/>
+  <field name="dateReadyToVerifySec" type="plong"/>
+  <field name="dateSubmittedSec" type="plong"/>
+  <field name="dateUpdatedSec" type="plong"/>
+  <field name="fixlvl" type="string"/>
+  <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="isClone" type="string"/>
+  <field name="issueNum" type="plong"/>
+  <field name="issue_assign_hist.noOfAssignments" type="plongs"/>
+  <field name="issue_assign_hist.timeHr" type="pdoubles"/>
+  <field name="issue_assign_hist.userId" type="text_general"/>
+  <field name="issue_assign_hist.userIdNumber" type="plongs"/>
+  <field name="issue_assign_hist.userName" type="text_general"/>
+  <field name="level" type="string"/>
+  <field name="owningteam" type="string"/>
+  <field name="phase_escaped" type="text_general"/>
+  <field name="phaseinject" type="text_general"/>
+  <field name="phsfnd" type="string"/>
+  <field name="priority" type="plong"/>
+  <field name="productType" type="string"/>
+  <field name="releases" type="string"/>
+  <field name="severity" type="plong"/>
+  <field name="shortDescription" type="string"/>
+  <field name="state" type="string"/>
+  <field name="submittedByDisp" type="string"/>
+  <field name="submittedByIdNumber" type="plong"/>
+  <field name="substate" type="string"/>
+  <field name="subsystem" type="string"/>
+  <field name="symptons" type="string"/>
+  <field name="time_chrg_hist.chargeType" type="text_general"/>
+  <field name="time_chrg_hist.timeHr" type="pdoubles"/>
+  <field name="time_chrg_hist.userId" type="text_general"/>
+  <field name="time_chrg_hist.userIdNumber" type="plongs"/>
+  <field name="type" type="string"/>

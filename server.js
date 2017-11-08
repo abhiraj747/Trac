@@ -38,11 +38,9 @@ app.post('/download', urlencodedParser, function (req, res) {
 	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
     var fields = ['issueNum', 'dateUpdatedSec', 'state', 'productType', 'type', 'severity','priority','assignedToUserName','dateSubmittedSec','age','releases','time_chrg_hist.userIdNumber','time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr']
 	
-	var csv = json2csv({ data: docArray.docs, fields: fields, unwindPath: ['time_chrg_hist.userIdNumber', 'time_chrg_hist.userId' , 'time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr'] });
-	fs.writeFile('file.csv', csv, function(err) {
-  if (err) throw err;
-  console.log('file saved');
-});
+	var csv = json2csv({ data: docArray.docs, fields: fields });
+	res.attachment('accurev_data.csv');
+res.status(200).send(csv);
 	
 	}
    });
