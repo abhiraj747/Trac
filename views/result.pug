@@ -41,23 +41,17 @@ html(lang='en')
     .scrollbar.scrollbar-primary
       table.table.table-striped(align='center')
         tr
-          th(rowspan='2') Issue #
-          th(rowspan='2') Date Updated
-          th(rowspan='2') State
-          th(rowspan='2') Severity
-          th(rowspan='2') Priority
-          th(rowspan='2') Assigned To
-          th(rowspan='2') Sub System
-          th(rowspan='2') Short Description
-          th(rowspan='2') Age
-          th(rowspan='2') Releases
-          th(colspan='2') Issue assigned to user
-          th(colspan='2') L3 Time in hours
-        tr
-          th  User Name 
-          th  No. of hours 
-          th  User Name 
-          th  No. of hours
+          th Issue #
+          th Date Updated
+          th State
+          th Severity
+          th Priority
+          th Assigned To
+          th Sub System
+          th Short Description
+          th Age
+          th Releases
+          th(colspan='4') User Assinment and Charge Time info
         tr(rowspan='2')
           each doc in docs
            td(rowspan='2')= doc.issueNum
@@ -70,5 +64,11 @@ html(lang='en')
            td(rowspan='2')= doc.shortDescription
            td(rowspan='2')= doc.age
            td(rowspan='2')= doc.releases
-            
-        tr
+           td User Name
+           each hist in doc['issue_assign_hist.userName']
+            td=hist
+           tr
+             td Issue Assignment History
+             each timehr in doc['issue_assign_hist.timeHr']
+              td=timehr
+           tr
