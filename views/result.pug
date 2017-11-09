@@ -43,26 +43,27 @@ html(lang='en')
         tr
           th Issue #
           th Date Updated
+          th Age
           th State
           th Severity
           th Priority
           th Assigned To
           th Sub System
           th Short Description
-          th Age
+          
           th Releases
           th(colspan='8') User Assinment and Charge Time info
         tr(rowspan='4')
           each doc in docs
            td(rowspan='4')= doc.issueNum
            td(rowspan='4')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
+           td(rowspan='4')= doc.age
            td(rowspan='4')= doc.state
            td(rowspan='4')= doc.severity
            td(rowspan='4')= doc.priority
            td(rowspan='4')= doc.assignedToUserName
            td(rowspan='4')= doc.subsystem
            td(rowspan='4')= doc.shortDescription
-           td(rowspan='4')= doc.age
            td(rowspan='4')= doc.releases
            td(style='font-weight:bold') User Name
            if doc['issue_assign_hist.userName'] 
