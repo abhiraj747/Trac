@@ -52,6 +52,7 @@ html(lang='en')
           th Priority
           th Code Changes
           th Is Clone
+          th Customer
           th Ext Defect#
           th Date Updated
           th Assigned To
@@ -69,6 +70,7 @@ html(lang='en')
            td(rowspan='4')= doc.priority
            td(rowspan='4')= doc.codechanges
            td(rowspan='4')= doc.isClone
+           td(rowspan='4')= doc.cust
            td(rowspan='4')= doc.ExtDefectNum
            td(rowspan='4')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
             if doc.assignedToIdNumber=='0'
