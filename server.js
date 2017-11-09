@@ -1,14 +1,12 @@
 var express = require('express');
 var app = express();
-
 var moment = require('moment');
-
 var json2csv = require('json2csv');
-
 var bodyParser = require('body-parser');
 var fs = require('fs');
 // Create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 app.use(express.static('public'));
 app.set('view engine', 'pug')
@@ -23,7 +21,6 @@ app.post('/download', urlencodedParser, function (req, res) {
 	
 	 if(searchString == '' || searchString === undefined){
 		 searchString="*:*";
-		 //searchString=searchString+'&rows=2147483647';
 	 }
 	console.log('searchString  :', searchString);
 	var resultQuery = client.search(client.query().q(searchString).rows(2147483647),function (err, result) {
@@ -34,12 +31,11 @@ app.post('/download', urlencodedParser, function (req, res) {
 	else{
 	// Search documents using strQuery 
 	
-	
 	var docArray = result.response;
 	//console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
     var fields = ['issueNum', 'dateUpdatedSec', 'state', 'substate','productType', 'type', 'severity','priority','assignedToIdNumber','assignedToUserName','submittedByIdNumber','dateSubmittedSec','datePromotedSec','dateReadyToVerifySec','dateRejectedSec','dateClosedSec','subsystem','comp','shortDescription','symptons','Answer','phsfnd','phaseinject','phase_escaped','cust','age','level','owningteam','sevjust','codechanges','releases','fixlvl','trgtstrm','certbyUserName','isClone','ExtDefectNum','defectvalUserName','defectresUserName','submittedByDisp','time_chrg_hist.userIdNumber','time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType','issue_assign_hist.userIdNumber','issue_assign_hist.userId','issue_assign_hist.userName','issue_assign_hist.noOfAssignments','issue_assign_hist.timeHr']
 	//, unwindPath:['time_chrg_hist.userId','time_chrg_hist.timeHr','time_chrg_hist.chargeType']
-	var csv = json2csv({ data: docArray.docs, fields: fields , unwindPath:['time_chrg_hist.userId','time_chrg_hist.timeHr'] });
+	var csv = json2csv({ data: docArray.docs, fields: fields });
 	res.attachment('accurev_data.csv');
 	res.status(200).send(csv);
 	
@@ -50,11 +46,14 @@ app.post('/download', urlencodedParser, function (req, res) {
 
 app.post('/process_post', urlencodedParser, function (req, res) {
 	var searchString = req.body.issueSearchQuery;
-	console.log('searchString  :', searchString);
-	 if(searchString == '' || searchString === undefined){
-		 searchString="*:*";
+	var project = req.body.Project;
+	
+	var searchQuery = 'productType:'+project
+	 if(!searchString == '' || !searchString === undefined){
+		 searchQuery=searchQuery+' AND ' +searchString;
 	 }
-	var resultQuery = client.search(client.query().q(searchString).rows(2147483647),function (err, result) {
+	 console.log('searchQuery  :', searchQuery);
+	var resultQuery = client.search(client.query().q(searchQuery).rows(2147483647),function (err, result) {
 	if(err)
 	{
 		res.render('error', {  err : err })
@@ -62,15 +61,8 @@ app.post('/process_post', urlencodedParser, function (req, res) {
 	else{
 	// Search documents using strQuery 
 	
-	
 	var docArray = result.response;
-	//console.log('docs ' , docs);
-    //res.send(JSON.stringify(result.response));
-	console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
-	/*for (var x in docArray.docs)
-	{
-		console.log('inside for loop' , docArray.docs[x]["issue_assign_hist.userName"]);
-	}*/
+	//console.log('result. pARSE +++++++++++++++++++:', docArray.docs);
 	res.render('result', {  docs: docArray.docs , moment: moment});
 	}
    });

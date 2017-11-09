@@ -40,37 +40,47 @@ html(lang='en')
       p Defect Tracking and Analysis tool
     .scrollbar.scrollbar-primary
       table.table.table-bordered(align='center')
-        tr
+        tr(class='info')
           th Issue #
-          th Date Updated
+          th Product Type
+          th Sub System
+          th Releases
           th Age
           th State
+          th Sub State
           th Severity
           th Priority
+          th Code Changes
+          th Is Clone
+          th Ext Defect#
+          th Date Updated
           th Assigned To
-          th Sub System
-          th Short Description
-          
-          th Releases
           th(colspan='8') User Assinment and Charge Time info
         tr(rowspan='4')
           each doc in docs
            td(rowspan='4')= doc.issueNum
-           td(rowspan='4')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
+           td(rowspan='4')= doc.productType
+           td(rowspan='4')= doc.subsystem
+           td(rowspan='4')= doc.releases
            td(rowspan='4')= doc.age
            td(rowspan='4')= doc.state
+           td(rowspan='4')= doc.substate
            td(rowspan='4')= doc.severity
            td(rowspan='4')= doc.priority
-           td(rowspan='4')= doc.assignedToUserName
-           td(rowspan='4')= doc.subsystem
-           td(rowspan='4')= doc.shortDescription
-           td(rowspan='4')= doc.releases
+           td(rowspan='4')= doc.codechanges
+           td(rowspan='4')= doc.isClone
+           td(rowspan='4')= doc.ExtDefectNum
+           td(rowspan='4')= moment(doc.dateUpdatedSec*1000).format("DD MMM YYYY hh:mm a")
+            if doc.assignedToIdNumber=='0'
+             td(rowspan='4') NA
+            else
+             td(rowspan='4')= doc.assignedToUserName
            td(style='font-weight:bold') User Name
            if doc['issue_assign_hist.userName'] 
            each hist in doc['issue_assign_hist.userName']
             td=hist
            tr
-             td(style='font-weight:bold') Issue Assignment History
+             td(style='font-weight:bold') Total Assigned Time
              each timehr in doc['issue_assign_hist.timeHr']
               td=timehr
            tr
