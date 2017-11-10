@@ -39,7 +39,7 @@ html(lang='en')
       h1 Trac
       p Defect Tracking and Analysis tool
     .scrollbar.scrollbar-primary
-      table.table.table-bordered(align='center')
+      table.table.table-bordered.table-striped(align='center')
         tr(class='info')
           th Issue #
           th Product Type
@@ -56,7 +56,10 @@ html(lang='en')
           th Ext Defect#
           th Date Updated
           th Assigned To
-          th(colspan='8') User Assinment and Charge Time info
+          th Date Promoted
+          th Date Ready To Verify
+          th Date Closed
+          th(colspan='4') User Assinment and Charge Time info
         tr(rowspan='4')
           each doc in docs
            td(rowspan='4')= doc.issueNum
@@ -77,6 +80,18 @@ html(lang='en')
              td(rowspan='4') NA
             else
              td(rowspan='4')= doc.assignedToUserName
+            if doc.datePromotedSec
+             td(rowspan='4')= moment(doc.datePromotedSec*1000).format("DD MMM YYYY hh:mm a")
+            else
+             td(rowspan='4') NA
+            if doc.dateReadyToVerifySec
+             td(rowspan='4')= moment(doc.dateReadyToVerifySec*1000).format("DD MMM YYYY hh:mm a")
+            else
+             td(rowspan='4') NA
+            if doc.dateClosedSec
+             td(rowspan='4')= moment(doc.dateClosedSec*1000).format("DD MMM YYYY hh:mm a")
+            else
+             td(rowspan='4') NA
            td(style='font-weight:bold') User Name
            if doc['issue_assign_hist.userName'] 
            each hist in doc['issue_assign_hist.userName']
