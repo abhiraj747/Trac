@@ -44,7 +44,7 @@ select {
 		</div>
 	<div class="col-md-4"></div>
     <div class="input-group col-md-4" >
-       <input type="text" list="autoCompleteEntries" autocomplete="off" class="form-control" align="center" id="issueNum" name="issueSearchQuery" placeholder="Search for issue details">
+       <input type="text" list="autoCompleteEntries" onkeydown="if (event.keyCode == 13) return false" autocomplete="off" class="form-control" align="center" id="issueNum" name="issueSearchQuery" placeholder="Search for issue details">
 	   <datalist id="autoCompleteEntries">
     <option value="releases:">
     <option value="issueNum:">
