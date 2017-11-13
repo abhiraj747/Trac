@@ -44,7 +44,18 @@ select {
 		</div>
 	<div class="col-md-4"></div>
     <div class="input-group col-md-4" >
-       <input type="text" class="form-control" align="center" id="issueNum" name="issueSearchQuery" placeholder="Search for issue details">
+       <input type="text" list="autoCompleteEntries" autocomplete="off" class="form-control" align="center" id="issueNum" name="issueSearchQuery" placeholder="Search for issue details">
+	   <datalist id="autoCompleteEntries">
+    <option value="releases:">
+    <option value="issueNum:">
+    <option value="assignedToUserName:">
+    <option value="owningteam:">
+    <option value="severity:">
+	<option value="shortDescription:">
+	<option value="priority:">
+	<option value="state:">
+	<option value="type:">
+  </datalist>
       <div class="input-group-btn">
         <input type="submit" value="Search" class="btn btn-info"></input>
       </div>
